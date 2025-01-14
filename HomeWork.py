@@ -40,6 +40,7 @@ async def help(message: Message):
 # Обработчик получения фотографии - бот сохраняет изображения и уведомляет пользователя об этом
 @dp.message(F.photo)
 async def save_photo(message: Message):
+    os.makedirs('img', exist_ok=True)  # Создание папки для хранения изображений при её отсутствии
     await message.answer('Изображение сохранено.')
     await bot.download(message.photo[-1], destination=f'img/{message.photo[-1].file_id}.jpg')
 
